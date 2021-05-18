@@ -1,2 +1,2 @@
 # landing-page
-build interactive page with dynamic content 
+build interactive html page with dynamic content 

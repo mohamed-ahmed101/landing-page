@@ -31,9 +31,7 @@ var sections
 })(window, document, undefined);
 
 function checkVisibleSection() {
-    console.log("now checkVisibleSection running")
     var minor = window.innerHeight, section = null;
-    console.log("minor", minor);
 
     for (const item of sections) {
         var offset = item.getBoundingClientRect();
@@ -52,7 +50,6 @@ function checkVisibleSection() {
  * Define Global Variables
  * 
 */
-const $root = $('html, body');
 const activeSectionCalss = "your-active-class";
 const content = [{
     anchorText: "section1",
@@ -173,41 +170,10 @@ constructItem(content);
 function _anchorOnClick(event) {
     deactivateSection();
     activateSection(event.target.hash)
-    event.preventDefault();
-    smoothScroll(event.target)
-    //console.log("anchor clicked" ,event.target.hash)
 }
 
 // Scroll to anchor ID using scrollTO event
 
-function smoothScroll(target) {
-    $root.animate({
-        scrollTop: $($.attr(target, 'href')).offset().top
-    }, 500);
-
-    // 'swing', function () {
-    //     window.location.hash = target;
-    //     $(document).on("scroll", onScroll);
-    // }
-}
-
-
-function onScroll(event) {
-    console.log("EEEEEEEEE", event.target)
-    var scrollPos = $(document).scrollTop();
-    $('section').each(function () {
-        var currLink = $(this);
-        var refElement = $(currLink.attr("href"));
-        console.log("=>>>>>>>>>>>>", currLink, refElement);
-        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-            $('#navbar__list li a').removeClass(activeSectionCalss);
-            currLink.addClass(activeSectionCalss);
-        }
-        else {
-            currLink.removeClass(activeSectionCalss);
-        }
-    });
-}
 /**
  * End Main Functions
  * Begin Events
